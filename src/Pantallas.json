@@ -1,0 +1,24 @@
+[
+  {
+    "Id": "1",
+    "Nombre": "admin",
+    "Direccion": "N/A",
+    "Estado": "N/A",
+    "Municipio": "N/A",
+    "Telefono": "322159242",
+    "Correo": "admin",
+    "Pass": "admin",
+    "Tipo": "1"
+  },
+  {
+    "Id": "17",
+    "Nombre": "Fabricio",
+    "Direccion": "N/A",
+    "Estado": "N/A",
+    "Municipio": "N/A",
+    "Telefono": "1",
+    "Correo": "Correo2",
+    "Pass": "1",
+    "Tipo": "0"
+  }
+]
