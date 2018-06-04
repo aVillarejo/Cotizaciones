@@ -13,7 +13,9 @@ export default class ServicioDetalles extends Component {
       "Core Price": "",
       Costo: "",
       "Precio Stocking Sin Orden en GSX": "",
-      MO: ""
+      MO: "",
+      Subtotal: "",
+      Total: ""
     };
   }
   componentDidMount() {
@@ -30,15 +32,24 @@ export default class ServicioDetalles extends Component {
       Costo: this.props.navigation.state.params.obj.Costo,
       "Precio Stocking Sin Orden en GSX": this.props.navigation.state.params
         .obj["Precio Stocking Sin Orden en GSX"],
-      MO: ""
+      MO: "",
+      Subtotal: this.props.navigation.state.params.obj.Costo * 1.3,
+      Total: (
+        this.props.navigation.state.params.obj.Costo *
+        1.3 *
+        1.16
+      ).toFixed(2)
     });
+    let subtotal = this.state.Costo * 1.3;
+    let Total = (subtotal * 1.16).toFixed(2);
   }
   render() {
     console.warn(this.state);
     return (
       <View style={styles.Container}>
-        <Text>{this.state.Model}</Text>
         <Text>{this.state.Part}</Text>
+        <Text>{this.state.Model}</Text>
+        <Text>Total: {this.state.Total}</Text>
       </View>
     );
   }
