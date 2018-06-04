@@ -79,7 +79,7 @@ export default class Repas extends Component {
               placeholder="Mano de Obra(hrs): "
               placeholderTextColor="#FFF"
               returnKeyType="done"
-              keyboardType="number-pad"
+              keyboardType="numeric"
               autoCorrect={false}
               autoCapitalize="none"
               style={styles.input}
@@ -101,7 +101,7 @@ export default class Repas extends Component {
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("Registro")}
             >
-              <Text style={styles.bold}>Reporte Detallado</Text>
+              <Text style={styles.bold}>Tabulador Inverso</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -126,23 +126,23 @@ export default class Repas extends Component {
           .then(responseJsonFromServer => {
             try {
               obj = responseJsonFromServer[this.state.Part];
-              console.warn(obj);
-
+              let subtotal = obj["Costo"] * 1.3;
+              let Total = (subtotal * 1.16).toFixed(2);
               this.props.navigation.navigate("ServiciosDetalles", {
+                Part: this.state.Part,
                 obj: obj
               });
-
-              // Alert.alert(
-              //   `${obj["Descrpition"]}`,
-              //   `Costo: ${Total}\nN. Parte: ${this.state.Part}`,
-              //   [
-              //     {
-              //       text: "OK",
-              //       onPress: () => console.log("OK Pressed")
-              //     }
-              //   ],
-              //   { cancelable: false }
-              // );
+              Alert.alert(
+                `${obj["Descrpition"]}`,
+                `Costo: ${Total}\nN. Parte: ${this.state.Part}`,
+                [
+                  {
+                    text: "OK",
+                    onPress: () => console.log("OK Pressed")
+                  }
+                ],
+                { cancelable: false }
+              );
             } catch (error) {
               Alert.alert(
                 "Lo sentimos",
@@ -175,8 +175,7 @@ export default class Repas extends Component {
                   text: "OK",
                   onPress: () => {
                     this.setState({
-                      Part: "",
-                      Mo: ""
+                      Part: ""
                     });
                     console.log(error);
                   }
@@ -193,12 +192,7 @@ export default class Repas extends Component {
         [
           {
             text: "OK",
-            onPress: () => {
-              this.setState({
-                Part: "",
-                Mo: ""
-              });
-            }
+            onPress: () => console.log("OK Pressed")
           }
         ],
         { cancelable: false }
@@ -217,7 +211,7 @@ const styles = StyleSheet.create({
     //  backgroundColor:'rgb(90,61,123)',
   },
   logoConten: {
-    //flexGrow: 1,
+    //sflex: 1,
     justifyContent: "center",
     alignItems: "center"
   },

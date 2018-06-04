@@ -4,6 +4,7 @@ import {
   Text,
   FlatList,
   ActivityIndicator,
+  Image,
   TouchableOpacity
 } from "react-native";
 
@@ -31,9 +32,10 @@ class UsersList extends Component {
 
   makeRemoteRequest = () => {
     const { page, seed } = this.state;
-    const url = `http://192.168.1.19/Serv_Web/ShowUsers.php`;
-
-    this.setState({ loading: true });
+    const url = `http://192.168.1.19/Cotizaciones_Web/Equipos.json`;
+    this.setState({
+      loading: true
+    });
     fetch(url)
       .then(res => res.json())
       .then(res => {
@@ -48,7 +50,10 @@ class UsersList extends Component {
         });
       })
       .catch(error => {
-        this.setState({ error, loading: false });
+        this.setState({
+          error,
+          loading: false
+        });
       });
   };
 
@@ -89,17 +94,17 @@ class UsersList extends Component {
     );
   };
 
-  renderHeader = () => {
-    return (
-      <SearchBar
-        containerStyle={{ flexDirection: "row", flex: 1 }}
-        inputStyle={{ flex: 1 }}
-        placeholder="Buscar..."
-        lightTheme
-        round
-      />
-    );
-  };
+  // renderHeader = () => {
+  //   return (
+  //     <SearchBar
+  //       containerStyle={{ flexDirection: "row", flex: 1 }}
+  //       inputStyle={{ flex: 1 }}
+  //       placeholder="Buscar..."
+  //       lightTheme
+  //       round
+  //     />
+  //   );
+  // };
 
   renderFooter = () => {
     if (!this.state.loading) return null;
@@ -140,7 +145,7 @@ class UsersList extends Component {
           </View>
 
           <View style={{ flex: 1, paddingTop: 20, alignItems: "center" }}>
-            <Text>Cargando Usuarios</Text>
+            <Text>Cargando</Text>
             <ActivityIndicator />
           </View>
         </View>
@@ -159,20 +164,28 @@ class UsersList extends Component {
               }
             >
               <ListItem
+                hideChevron
                 roundAvatar
-                title={`${item.Nombre}`}
-                subtitle={item.Correo}
-                avatar={{
-                  uri:
-                    item.Tipo != 0
-                      ? "https://cdn.icon-icons.com/icons2/157/PNG/256/admin_user_man_22187.png"
-                      : "https://cdn3.iconfinder.com/data/icons/users-6/100/654853-user-men-2-128.png"
+                title={`${item.Modelo}`}
+                avatar={
+                  { uri: item.avatar } //subtitle={`$${item.Costo}`}
+                }
+                avatarStyle={{
+                  width: 40,
+                  height: 50,
+                  resizeMode: Image.resizeMode.contain
                 }}
-                containerStyle={{ borderBottomWidth: 0 }}
+                containerStyle={{ borderBottomWidth: 0 }} // badge={{
+                //   value: `$${item.Costo}`,
+                //   badgeTextStyle: { color: "orange" },
+                //   badgeContainerStyle: { marginTop: -20 }
+                // }}
+                rightTitle={`$${item.Costo} MXN`}
+                rightTitleStyle={{ marginRight: 0, color: "black" }}
               />
             </TouchableOpacity>
           )}
-          keyExtractor={item => item.Correo}
+          keyExtractor={item => item.Id}
           ItemSeparatorComponent={this.renderSeparator}
           ListHeaderComponent={this.renderHeader}
           ListFooterComponent={this.renderFooter}

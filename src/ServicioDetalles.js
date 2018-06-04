@@ -19,20 +19,26 @@ export default class ServicioDetalles extends Component {
   componentDidMount() {
     // Received Student Details Sent From Previous Activity and Set Into State.
     this.setState({
-      Part: this.props.navigation.state.params.obj.Id,
-      Nombre: this.props.navigation.state.params.obj.Nombre,
-      Direccion: this.props.navigation.state.params.obj.Direccion,
-      Municipio: this.props.navigation.state.params.obj.Municipio,
-      Estado: this.props.navigation.state.params.obj.Estado,
-      Tipo: this.props.navigation.state.params.obj.Tipo,
-      Telefono: this.props.navigation.state.params.obj.Telefono,
-      Correo: this.props.navigation.state.params.obj.Correo
+      Part: this.props.navigation.state.params.Part,
+      Model: this.props.navigation.state.params.obj.Model,
+      Descrpition: this.props.navigation.state.params.obj.Descrpition,
+      Family: this.props.navigation.state.params.obj.Family,
+      "Precio Lista OOW": this.props.navigation.state.params.obj[
+        "Precio Lista OOW"
+      ],
+      "Core Price": this.props.navigation.state.params.obj["Core Price"],
+      Costo: this.props.navigation.state.params.obj.Costo,
+      "Precio Stocking Sin Orden en GSX": this.props.navigation.state.params
+        .obj["Precio Stocking Sin Orden en GSX"],
+      MO: ""
     });
   }
   render() {
+    console.warn(this.state);
     return (
       <View style={styles.Container}>
-        <Text>ServicioDetalles</Text>
+        <Text>{this.state.Model}</Text>
+        <Text>{this.state.Part}</Text>
       </View>
     );
   }

@@ -184,7 +184,7 @@ export default class Repas extends Component {
     } else {
       Alert.alert(
         "Error",
-        "Proporcione un numero de parte",
+        "Proporcione un numero de parte y horas de mano de obra",
         [
           {
             text: "OK",
