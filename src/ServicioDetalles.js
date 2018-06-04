@@ -49,6 +49,7 @@ export default class ServicioDetalles extends Component {
       <View style={styles.Container}>
         <Text>{this.state.Part}</Text>
         <Text>{this.state.Model}</Text>
+        <Text>Total: {this.state.Subtotal}</Text>
         <Text>Total: {this.state.Total}</Text>
       </View>
     );
