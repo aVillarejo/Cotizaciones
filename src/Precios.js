@@ -16,7 +16,88 @@ class UsersList extends Component {
     super(props);
     this.state = {
       loading: false,
-      data: [],
+      data: [
+        {
+          Id: "10",
+          Modelo: "iPhone X",
+          Costo: 6990,
+          AC: 4299,
+          avatar:
+            "https://assets.mspcdn.net/w_128,h_128,c_pad,b_white/c/13409-32-1.jpg"
+        },
+        {
+          Id: "9",
+          Modelo: "iPhone 8 Plus",
+          Costo: 4319,
+          AC: 3299,
+          avatar:
+            "https://store.storeimages.cdn-apple.com/4980/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone8/plus/iphone8-plus-red-box-2018?wid=170&hei=372&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1520633393174"
+        },
+        {
+          Id: "8",
+          Modelo: "iPhone 8",
+          Costo: 3851,
+          AC: 2499,
+          avatar:
+            "https://store.storeimages.cdn-apple.com/4980/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone8/red/iphone8-red-box-2018?wid=164&hei=372&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1520633393143"
+        },
+        {
+          Id: "7",
+          Modelo: "iPhone 7 Plus",
+          Costo: 4319,
+          AC: 3299,
+          avatar:
+            "https://store.storeimages.cdn-apple.com/4980/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone7/plus/iphone7-plus-gold-box-201609?wid=170&hei=372&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1473360384915"
+        },
+        {
+          Id: "6",
+          Modelo: "iPhone 7",
+          Costo: 3851,
+          AC: 2499,
+          avatar:
+            "https://store.storeimages.cdn-apple.com/4980/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone7/gold/iphone7-gold-box-201609?wid=164&hei=372&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1473360382744"
+        },
+        {
+          Id: "5",
+          Modelo: "iPhone 6s Plus",
+          Costo: 4319,
+          AC: 3299,
+          avatar:
+            "https://store.storeimages.cdn-apple.com/4980/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/plus/iphone6s-plus-rosegold-box-201609?wid=196&hei=372&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1471913018432"
+        },
+        {
+          Id: "4",
+          Modelo: "iPhone 6s",
+          Costo: 3851,
+          AC: 2499,
+          avatar:
+            "https://store.storeimages.cdn-apple.com/4980/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/rosegold/iphone6s-rosegold-box-201609?wid=180&hei=372&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1471913021385"
+        },
+        {
+          Id: "3",
+          Modelo: "iPhone 6 Plus",
+          Costo: 3851,
+          AC: 0,
+          avatar:
+            "https://store.storeimages.cdn-apple.com/4980/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/plus/iphone6s-plus-spacegray-box-201609?wid=196&hei=372&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1471913018577"
+        },
+        {
+          Id: "2",
+          Modelo: "iPhone 6",
+          Costo: 3359,
+          AC: 0,
+          avatar:
+            "https://store.storeimages.cdn-apple.com/4980/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/spacegray/iphone6s-spacegray-box-201609?wid=180&hei=372&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1471913022039"
+        },
+        {
+          Id: "1",
+          Modelo: "iPhone SE/5S/5/5c",
+          Costo: 3359,
+          AC: 1999,
+          avatar:
+            "https://store.storeimages.cdn-apple.com/4980/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphonese/rosegold/iphonese-rosegold-box-201609?wid=180&hei=372&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1489698655781"
+        }
+      ],
       page: 1,
       seed: 1,
       error: null,
@@ -32,7 +113,7 @@ class UsersList extends Component {
 
   makeRemoteRequest = () => {
     const { page, seed } = this.state;
-    const url = `http://192.168.1.19/Cotizaciones_Web/Equipos.json`;
+    const url = `http://192.168.137.145/Cotizaciones_Web/Equipos.json`;
     this.setState({
       loading: true
     });
