@@ -12,8 +12,7 @@ import {
   KeyboardAvoidingView,
   TextInput,
   ActivityIndicator,
-  Alert,
-  Picker
+  Alert
 } from "react-native";
 import { Button } from "react-native-elements";
 import ServerURL from "./ServerURL";
@@ -23,13 +22,13 @@ export default class Repas extends Component {
     this.state = {
       Part: "",
       Model: "",
-      Descrpition: "",
+      Description: "",
       Family: "",
       "Precio Lista OOW": "",
       "Core Price": "",
       Costo: "",
       "Precio Stocking Sin Orden en GSX": "",
-      MO: "",
+      MO: "0",
       ActivityIndicator_Loading: false
     };
   }
@@ -112,7 +111,8 @@ export default class Repas extends Component {
   _fetchURL = () => {
     if (this.state.Part != "" && this.state.MO != "") {
       this.setState({ ActivityIndicator_Loading: true }, () => {
-        fetch(ServerURL, {
+        const url = `${ServerURL}/Cotizaciones_Web/AssemblyParts.json`;
+        fetch(url, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -133,7 +133,7 @@ export default class Repas extends Component {
                 obj: obj
               });
               Alert.alert(
-                `${obj["Descrpition"]}`,
+                `${obj["Description"]}`,
                 `Costo: ${Total}\nN. Parte: ${this.state.Part}`,
                 [
                   {

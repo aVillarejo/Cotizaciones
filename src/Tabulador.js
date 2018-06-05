@@ -112,7 +112,8 @@ export default class Repas extends Component {
   _fetchURL = () => {
     if (this.state.Part != "" && this.state.MO != "") {
       this.setState({ ActivityIndicator_Loading: true }, () => {
-        fetch(ServerURL, {
+        const url = `${ServerURL}/Cotizaciones_Web/AssemblyParts.json`;
+        fetch(url, {
           method: "POST",
           headers: {
             Accept: "application/json",
