@@ -28,7 +28,7 @@ export default class Repas extends Component {
       "Core Price": "",
       Costo: "",
       "Precio Stocking Sin Orden en GSX": "",
-      MO: "0",
+      MO:"",
       ActivityIndicator_Loading: false
     };
   }
@@ -109,7 +109,7 @@ export default class Repas extends Component {
   }
 
   _fetchURL = () => {
-    if (this.state.Part != "" && this.state.MO != "") {
+    if (this.state.Part != "" && this.state.MO) {
       this.setState({ ActivityIndicator_Loading: true }, () => {
         const url = `${ServerURL}/Cotizaciones_Web/AssemblyParts.json`;
         fetch(url, {
@@ -126,23 +126,11 @@ export default class Repas extends Component {
           .then(responseJsonFromServer => {
             try {
               obj = responseJsonFromServer[this.state.Part];
-              let subtotal = obj["Costo"] * 1.3;
-              let Total = (subtotal * 1.16).toFixed(2);
+
               this.props.navigation.navigate("ServiciosDetalles", {
                 Part: this.state.Part,
                 obj: obj
               });
-              Alert.alert(
-                `${obj["Description"]}`,
-                `Costo: ${Total}\nN. Parte: ${this.state.Part}`,
-                [
-                  {
-                    text: "OK",
-                    onPress: () => console.log("OK Pressed")
-                  }
-                ],
-                { cancelable: false }
-              );
             } catch (error) {
               Alert.alert(
                 "Lo sentimos",

@@ -5,7 +5,8 @@ import {
   FlatList,
   ActivityIndicator,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  SafeAreaView
 } from "react-native";
 
 import { List, ListItem, SearchBar } from "react-native-elements";
@@ -152,50 +153,51 @@ class UsersList extends Component {
       );
     }
     return (
-      <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
-        <FlatList
-          data={this.state.data}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate("UserDetails", {
-                  obj: item
-                })
-              }
-            >
-              <ListItem
-                hideChevron
-                roundAvatar
-                title={`${item.Modelo}`}
-                avatar={
-                  { uri: item.avatar } //subtitle={`$${item.Costo}`}
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+        <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+          <FlatList
+            data={this.state.data}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate("UserDetails", {
+                    obj: item
+                  })
                 }
-                avatarStyle={{
-                  width: 40,
-                  height: 50,
-                  backgroundColor: "white",
-                  resizeMode: Image.resizeMode.contain
-                }}
-                containerStyle={{ borderBottomWidth: 0 }} // badge={{
-                //   value: `$${item.Costo}`,
-                //   badgeTextStyle: { color: "orange" },
-                //   badgeContainerStyle: { marginTop: -20 }
-                // }}
-                rightTitle={`$${item.Costo} MXN`}
-                rightTitleStyle={{ marginRight: 0, color: "black" }}
-              />
-            </TouchableOpacity>
-          )}
-          keyExtractor={item => item.Id}
-          ItemSeparatorComponent={this.renderSeparator}
-          ListHeaderComponent={this.renderHeader}
-          ListFooterComponent={this.renderFooter}
-          onRefresh={this.handleRefresh}
-          refreshing={this.state.refreshing}
-          onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={50}
-        />
-      </List>
+              >
+                <ListItem
+                  hideChevron
+                  roundAvatar
+                  title={`${item.Modelo}`}
+                  avatar={
+                    { uri: item.avatar } //subtitle={`$${item.Costo}`}
+                  }
+                  avatarStyle={{
+                    width: 40,
+                    height: 50,
+                    backgroundColor: "white",
+                    resizeMode: Image.resizeMode.contain
+                  }}
+                  containerStyle={{ borderBottomWidth: 0 }} //   value: `$${item.Costo}`, // badge={{
+                  //   badgeTextStyle: { color: "orange" },
+                  //   badgeContainerStyle: { marginTop: -20 }
+                  // }}
+                  rightTitle={`$${item.Costo} MXN`}
+                  rightTitleStyle={{ marginRight: 0, color: "black" }}
+                />
+              </TouchableOpacity>
+            )}
+            keyExtractor={item => item.Id}
+            ItemSeparatorComponent={this.renderSeparator}
+            ListHeaderComponent={this.renderHeader}
+            ListFooterComponent={this.renderFooter}
+            onRefresh={this.handleRefresh}
+            refreshing={this.state.refreshing}
+            onEndReached={this.handleLoadMore}
+            onEndReachedThreshold={50}
+          />
+        </List>
+      </SafeAreaView>
     );
   }
 }
